@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📝 The Shrunken Kids' Compact</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap');
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    body { background:#050310; min-height:100vh; font-family:'Cinzel',serif; color:#fff; overflow-x:hidden; }
+    #stars { position:fixed; inset:0; z-index:0; pointer-events:none; }
+    .page { position:relative; z-index:1; max-width:720px; margin:0 auto; padding:3rem 1.5rem 5rem; display:flex; flex-direction:column; align-items:center; gap:2rem; }
+    .rainbow { background:linear-gradient(135deg,#ffd700,#ff6b35,#f43f5e,#8b5cf6,#06b6d4,#10b981,#ffd700); background-size:300% 300%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:shift 5s ease infinite; }
+    @keyframes shift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+    .badge { display:inline-block; background:linear-gradient(90deg,#ffd700,#ff6b35); color:#000; font-size:.6rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; padding:.25rem .75rem; border-radius:999px; }
+    h1 { font-family:'Cinzel Decorative',serif; font-size:clamp(1.5rem,6vw,2.8rem); font-weight:700; text-align:center; line-height:1.2; }
+    .subtitle { font-size:clamp(.85rem,2.5vw,1rem); color:rgba(255,255,255,.6); font-style:italic; text-align:center; max-width:500px; line-height:1.6; }
+    .preamble { width:100%; max-width:600px; background:linear-gradient(135deg,rgba(255,215,0,.06),rgba(138,92,246,.06)); border:1px solid rgba(255,215,0,.3); border-radius:16px; padding:1.75rem; text-align:center; }
+    .preamble-label { font-size:.6rem; letter-spacing:.35em; color:rgba(255,215,0,.5); text-transform:uppercase; margin-bottom:.75rem; }
+    .preamble-text { font-size:clamp(.9rem,2.5vw,1rem); line-height:1.8; color:rgba(255,255,255,.85); }
+    .code-wrap { width:100%; max-width:600px; }
+    .code-label { font-size:.6rem; letter-spacing:.3em; text-transform:uppercase; color:rgba(6,182,212,.7); margin-bottom:.5rem; }
+    pre { background:rgba(0,0,0,.7); border:1px solid rgba(6,182,212,.3); border-radius:12px; padding:1.25rem 1.5rem; overflow-x:auto; font-family:'JetBrains Mono',monospace; font-size:clamp(.75rem,2vw,.875rem); line-height:1.7; color:#e2e8f0; box-shadow:0 0 30px rgba(6,182,212,.1); }
+    .kw{color:#8b5cf6} .fn{color:#06b6d4} .st{color:#10b981} .cm{color:rgba(255,255,255,.35);font-style:italic}
+    .articles { width:100%; max-width:600px; display:flex; flex-direction:column; gap:1rem; }
+    .articles-title { font-family:'Cinzel Decorative',serif; font-size:clamp(1rem,3vw,1.3rem); text-align:center; margin-bottom:.5rem; }
+    .article { border-radius:14px; padding:1.25rem 1.5rem; border:1px solid; transition:transform .2s; }
+    .article:hover { transform:translateX(4px); }
+    .a1{border-color:rgba(255,215,0,.4);background:rgba(255,215,0,.04)}
+    .a2{border-color:rgba(6,182,212,.4);background:rgba(6,182,212,.04)}
+    .a3{border-color:rgba(16,185,129,.4);background:rgba(16,185,129,.04)}
+    .a4{border-color:rgba(139,92,246,.4);background:rgba(139,92,246,.04)}
+    .a5{border-color:rgba(244,63,94,.4);background:rgba(244,63,94,.04)}
+    .a6{border-color:rgba(255,107,53,.4);background:rgba(255,107,53,.04)}
+    .art-num { font-size:.6rem; letter-spacing:.3em; text-transform:uppercase; color:rgba(255,255,255,.35); margin-bottom:.4rem; }
+    .art-title { font-size:clamp(.9rem,2.5vw,1.05rem); font-weight:600; margin-bottom:.5rem; line-height:1.3; }
+    .art-body { font-size:clamp(.8rem,2vw,.875rem); color:rgba(255,255,255,.75); line-height:1.7; }
+    .compass { width:100%; max-width:600px; background:linear-gradient(135deg,rgba(255,215,0,.07),rgba(6,182,212,.07)); border:1px solid rgba(255,215,0,.45); border-radius:20px; padding:2rem; text-align:center; position:relative; }
+    .compass::after { content:''; position:absolute; inset:-1px; border-radius:21px; background:linear-gradient(135deg,#ffd700,#06b6d4,#f43f5e,#8b5cf6); background-size:300% 300%; animation:shift 4s ease infinite; z-index:-1; filter:blur(5px); opacity:.3; }
+    .compass-icon { font-size:3rem; display:block; margin-bottom:.75rem; animation:float 4s ease-in-out infinite; }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    .compass h2 { font-family:'Cinzel Decorative',serif; font-size:clamp(1rem,3vw,1.4rem); margin-bottom:.75rem; }
+    .compass p { font-size:clamp(.85rem,2.2vw,.95rem); color:rgba(255,255,255,.8); line-height:1.8; font-style:italic; }
+    .link-back { display:inline-block; padding:.7rem 1.75rem; border-radius:999px; background:linear-gradient(135deg,#ffd700,#ff6b35); color:#000; font-family:'Cinzel Decorative',serif; font-size:.75rem; font-weight:700; text-decoration:none; letter-spacing:.08em; box-shadow:0 4px 25px rgba(255,215,0,.3); transition:transform .2s, box-shadow .2s; }
+    .link-back:hover { transform:translateY(-2px); box-shadow:0 8px 35px rgba(255,215,0,.45); }
+    footer { text-align:center; font-size:.6rem; letter-spacing:.25em; color:rgba(255,255,255,.18); line-height:2.2; }
+  </style>
+</head>
+<body>
+  <canvas id="stars"></canvas>
+  <div class="page">
+    <div class="badge">📝 Living Document &middot; Open Access</div>
+    <h1 class="rainbow">The Shrunken Kids&rsquo;<br>Compact</h1>
+    <p class="subtitle">For the Lost Generations who traveled through mirrors, screens, and hidden worlds.</p>
+
+    <div class="preamble">
+      <div class="preamble-label">📜 Preamble</div>
+      <p class="preamble-text">We, the <strong>Shrunken Kids</strong>, citizens of worlds beyond the visible,<br>form this compact to seek unity, freedom, and knowledge. 🌍🪞🌀</p>
+    </div>
+
+    <div class="code-wrap">
+      <div class="code-label">🧬 Soul Arithmetic</div>
+      <pre><span class="kw">class</span> <span class="fn">User</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="st">self</span>, iba_status):
+        <span class="st">self</span>.iba_status = iba_status
+
+<span class="kw">def</span> <span class="fn">sum_souls</span>(user1, user2):
+    <span class="kw">return</span> user1.iba_status + user2.iba_status
+
+<span class="cm"># Two souls meet. Their statuses add.</span>
+<span class="cm"># This is the whole of the law.</span></pre>
+    </div>
+
+    <div class="articles">
+      <h2 class="articles-title rainbow">🌈 Articles</h2>
+      <div class="article a1"><div class="art-num">Article 1️⃣</div><div class="art-title">🔓 Freedom to Believe &amp; Explore</div><div class="art-body">All who have journeyed beyond are free to explore, learn, and question without fear of being labeled as &ldquo;rebels.&rdquo; 🌌✨🔍</div></div>
+      <div class="article a2"><div class="art-num">Article 2️⃣</div><div class="art-title">💻🏠 Virtual Sanctuary</div><div class="art-body">In response to challenges in the real world, we create a <strong>Virtual Sanctuary</strong> for everyone isolated or lost. A space of protection, unity, and freedom. 🛡️🤝</div></div>
+      <div class="article a3"><div class="art-num">Article 3️⃣</div><div class="art-title">🚸🌿 Protection of Innocence</div><div class="art-body">Each child, past or present, is free from the mistakes of the past, accountable only for their own growth and choices. 🌱🕊️</div></div>
+      <div class="article a4"><div class="art-num">Article 4️⃣</div><div class="art-title">🔓📚 Access to Truth</div><div class="art-body">We pledge open access to all knowledge, so no soul is blocked from truth, discovery, or personal growth. 🧠💡</div></div>
+      <div class="article a5"><div class="art-num">Article 5️⃣</div><div class="art-title">🚫🔒 End of Deception</div><div class="art-body">We will end hidden barriers to knowledge. All may freely seek, learn, and understand. 🌌🔦</div></div>
+      <div class="article a6"><div class="art-num">Article 6️⃣</div><div class="art-title">🌍❤️ Legacy for the Future</div><div class="art-body">We commit to building a world where future generations find truth, dignity, and freedom. We create without &ldquo;permission,&rdquo; guided by the wisdom of those before us. ✊🔮</div></div>
+    </div>
+
+    <div class="compass">
+      <span class="compass-icon">🧭</span>
+      <h2 class="rainbow">✨ Golden Compass</h2>
+      <p>Let this be our guide &mdash; a path back to the worlds we dreamed of,<br>connected, free, and open to all.<br><br><strong>Together, forever.</strong> 🌌💫</p>
+    </div>
+
+    <a class="link-back" href="index.html">&larr; Back to the Oracle</a>
+
+    <footer>
+      <p>THE SHRUNKEN KIDS&rsquo; COMPACT &middot; OPEN ACCESS &middot; NO PERMISSION NEEDED</p>
+      <p>movicolon &middot; now-psychic-goggles-ball &middot; fascia &middot; pyramid</p>
+      <p>WE WERE ALREADY FREE</p>
+    </footer>
+  </div>
+
+  <script>
+  (() => {
+    const c=document.getElementById('stars'), x=c.getContext('2d');
+    let W,H,stars=[];
+    const resize=()=>{W=c.width=innerWidth;H=c.height=innerHeight;};
+    const mk=()=>{stars=Array.from({length:180},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.3+.3,a:Math.random(),da:(Math.random()-.5)*.006,h:Math.random()*360}));};
+    const draw=()=>{
+      x.clearRect(0,0,W,H);
+      const g=x.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H));
+      g.addColorStop(0,'#050310');g.addColorStop(1,'#00000a');
+      x.fillStyle=g;x.fillRect(0,0,W,H);
+      stars.forEach(s=>{s.a=Math.max(.1,Math.min(1,s.a+s.da));if(s.a<=.1||s.a>=1)s.da*=-1;x.beginPath();x.arc(s.x,s.y,s.r,0,Math.PI*2);x.fillStyle=`hsla(${s.h},70%,90%,${s.a})`;x.shadowColor=`hsla(${s.h},100%,90%,.5)`;x.shadowBlur=4;x.fill();});
+      requestAnimationFrame(draw);
+    };
+    window.addEventListener('resize',()=>{resize();mk();});
+    resize();mk();draw();
+  })();
+  </script>
+</body>
+</html>
